@@ -1,0 +1,3340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+</body>
+<script>
+    //--------------FinalBill for pizzas---------------
+    let arr = []
+    function TotalBill(arr){
+        function Bill(arr){
+            let total_bill = 0
+            let billtext = "-----------Total Bill Amount----------\n";
+            for (let index = 0; index < arr.length; index++){
+                const item = arr[index]
+                const { ItemName, Quantity, Extra_Toppings, Price } = item
+                total_bill += Price;
+                billtext += `${index + 1}. ${ItemName}  x  ${Quantity}  -  ${Price}\n`;
+            }
+            billtext += `------------------------------------------\nTotal Cost: $${total_bill}\n------------------------------------------`;
+            return billtext;
+        }
+        const bill = Bill(arr)
+        alert(bill);
+    }
+
+    //----------Invalid_Functions---------------
+    function Invalid() {
+        let opt = prompt("Do you want to Exit/Continue.\nFor Exit press 1\nFor continue press 2")
+        if (opt == 1) {
+            alert("Thank you for Visiting.")
+        }
+        else {
+            let options = prompt("******** Wellcome to Pizza Hut ********* \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+            user_options(Number(options))
+        }
+    }
+    //-----------------------pizza section----------------------
+    function pizza() {
+        let a = Number(prompt("Select what type of pizza Do you want\n1.Veg\n2.Non Veg"))
+        if (a == 1) {
+            veg()
+        }
+        else if (a == 2) {
+            Non_veg()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                pizza()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-----------------------pizza veg section----------------------
+    function veg() {
+        let v = Number(prompt("Select what type of Veg pizza do you want\n1.Paneer special\n2.Spicy Mexican\n3.Vegetarian Special\n4.Four Cheese Special"))
+        if (v == 1) {
+            PaneerPizza()
+        }
+        else if (v == 2) {
+            SpicyPizza()
+        }
+        else if (v == 3) {
+            Vegetarian()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                veg()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //----------Paneerpizza-----------------
+    function PaneerPizza() {
+        // alert("Your selected PannerSpecial Pizza.")
+        let A = Number(prompt("Select which medium pizza do you want\n1.Small\n2.Medium\n3.Large"))
+        if (A == 1) {
+            let P = 250
+            alert(`You are selected small Paneer Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                Item = `Paneer Pizza`
+                let t = 5
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t,
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  : ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum
+                    }
+                    arr.push(value)
+                    console.log(arr)
+
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for Visiting.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        PaneerPizza()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    PaneerPizza(Number(A1))
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else if (A == 2) {
+            let P = 300
+            alert(`You are selected Medium Paneer Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                Item = `Paneer Pizza`
+                let t = 5
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum
+                    }
+                    arr.push(value)
+                    console.log(arr)
+
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum
+                    }
+                    arr.push(value)
+                    console.log(arr)
+
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        PaneerPizza()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    PaneerPizza(Number(A1))
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else if (A == 3) {
+            let P = 450
+            alert(`You are selected Large Paneer Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                Item = `Paneer Pizza`
+                let t = 5
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum
+                    }
+                    arr.push(value)
+                    console.log(arr)
+
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            PaneerPizza()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  : ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (S == 1) {
+                        PaneerPizza()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    PaneerPizza(Number(A1))
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                PaneerPizza()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //----------Spicypizza-----------------
+    function SpicyPizza() {
+        // alert("Your selected Spicy Pizza.")
+        let A = Number(prompt("Select which medium pizza do you want\n1.Small\n2.Medium\n3.Large"))
+        if (A == 1) {
+            let P = 280
+            alert(`You are selected small Spicy Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                Item = `Spicy Pizza`
+                let t = 5
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :   ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :   ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :   ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+
+                        alert("Thank you for Visiting.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        SpicyPizza()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    SpicyPizza()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else if (A == 2) {
+            let P = 350
+            alert(`You are selected Medium  Spicy Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                Item = `Spicy Pizza`
+                let t = 5
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :   ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :   ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            SpicyPizza()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :   ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        SpicyPizza()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    SpicyPizza()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else if (A == 3) {
+            let P = 480
+            alert(`You are selected Large Spicy Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                Item = `Spicy Pizza`
+                let t = 5
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :   ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :   ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            SpicyPizza()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        SpicyPizza()
+                    }
+                    else {
+                        alert("Thank you for Visiting.")
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    SpicyPizza()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+    }
+    //----------VegetarianPizza-----------------
+    function VegetarianPizza() {
+        // alert("Your selected Vegetarian Pizza.")
+        let A = Number(prompt("Select which medium pizza do you want\n1.Small\n2.Medium\n3.Large"))
+        if (A == 1) {
+            let P = 200
+            alert(`You are selected small Vegetarian Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                Item = `Vegetarian Pizza`
+                let t = 5
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            VegetarianPizza()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        VegetarianPizza()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    VegetarianPizza()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else if (A == 2) {
+            let P = 300
+            alert(`You are selected Medium Vegetarian Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                Item = `Vegetarian Pizza`
+                let t = 5
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            VegetarianPizza()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        VegetarianPizza()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    VegetarianPizza()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else if (A == 3) {
+            let P = 400
+            alert(`You are selected Large Vegetarian Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                Item = `Vegetarian Pizza`
+                let t = 5
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  : ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum + t}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + t}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            VegetarianPizza()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        VegetarianPizza()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    VegetarianPizza()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                VegetarianPizza()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------Non-veg section----------------
+    function Non_veg() {
+        // alert("Your selected Non_Veg Pizza.");
+        let n = Number(prompt("Select what type of Non_Veg pizza do you want\n1.Chicken Golden Delight\n2.Chicken Dominator\n3.Pepper Barbecue Chicken\n4.Keema Do Pyaza"))
+        if (n == 1) {
+            Chicken_Golden_Delight()
+        }
+        else if (n == 2) {
+            Chicken_Dominator()
+        }
+        else if (n == 3) {
+            Pepper_Barbecue_Chicken()
+        }
+
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Non_veg()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+
+    //-------------Chicken_Golden_Delight--------------
+    function Chicken_Golden_Delight() {
+        // alert("Your selected Chicken_Golden_Delight Pizza.")
+        let A = Number(prompt("Select which medium pizza do you want\n1.Small\n2.Medium\n3.Large"))
+        if (A == 1) {
+            let P = 300
+            alert(`You are selected small Chicken_Golden_Delight Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                let t = 5
+                Item = `Chicken_Golden_Delight Pizza`
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            Chicken_Golden_Delight()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        Chicken_Golden_Delight()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    Chicken_Golden_Delight()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else if (A == 2) {
+            let P = 400
+            alert(`You are selected Medium Chicken_Golden_Delight pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                let t = 5
+                Item = `Chicken_Golden_Delight Pizza`
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            Chicken_Golden_Delight()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        Chicken_Golden_Delight()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    Chicken_Golden_Delight()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else if (A == 3) {
+            let P = 500
+            alert(`You are selected Large Chicken_Golden_Delight Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                let t = 5
+                Item = `Chicken_Golden_Delight Pizza`
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  : ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            Chicken_Golden_Delight()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        Chicken_Golden_Delight()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    Chicken_Golden_Delight()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Chicken_Golden_Delight()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //----------Chicken_Dominator-----------------
+    function Chicken_Dominator() {
+        // alert("Your selected Chicken_Dominator Pizza.")
+        let A = Number(prompt("Select which medium pizza do you want\n1.Small\n2.Medium\n3.Large"))
+        if (A == 1) {
+            let P = 320
+            alert(`You are selected small Chicken_Dominator Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                let t = 5
+                Item = `Chicken_Dominator Pizza`
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            Chicken_Dominator()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        Chicken_Dominator()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    Chicken_Dominator()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else if (A == 2) {
+            let P = 390
+            alert(`You are selected Medium Chicken_Dominator pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                let t = 5
+                Item = `Chicken_Dominator Pizza`
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            Chicken_Dominator()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        Chicken_Dominator()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    Chicken_Dominator()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else if (A == 3) {
+            let P = 480
+            alert(`You are selected Large Chicken_Dominator Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                let t = 5
+                Item = `Chicken_Dominator Pizza`
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            Chicken_Dominator()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        Chicken_Dominator()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    Chicken_Dominator()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Chicken_Dominator()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //----------Pepper_Barbecue_Chicken-----------------
+    function Pepper_Barbecue_Chicken() {
+        // alert("Your selected Pepper_Barbecue_Chicken Pizza.")
+        let A = Number(prompt("Select which medium pizza do you want\n1.Small\n2.Medium\n3.Large"))
+        if (A == 1) {
+            let P = 380
+            alert(`You are selected small Pepper_Barbecue_Chicken Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                let t = 5
+                Item = `Pepper_Barbecue_Chicken`
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  : ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            Pepper_Barbecue_Chicken()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  small\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        Pepper_Barbecue_Chicken()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    Pepper_Barbecue_Chicken()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else if (A == 2) {
+            let P = 440
+            alert(`You are selected Medium Pepper_Barbecue_Chicken pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                let t = 5
+                Item = `Pepper_Barbecue_Chicken`
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  : ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            Pepper_Barbecue_Chicken()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Medium\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        Pepper_Barbecue_Chicken()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    Pepper_Barbecue_Chicken()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else if (A == 3) {
+            let P = 520
+            alert(`You are selected Large Pepper_Barbecue_Chicken Pizza.\nThe price is:${P}`)
+            let A1 = Number(prompt("How many pizza's do you want:"))
+            if (A1 > 0) {
+                let t = 5
+                Item = `Pepper_Barbecue_Chicken`
+                let sum = A1 * P
+                alert(`The Total price is:${A1}*${P}=${sum}`)
+                alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                let p = Number(prompt("Do you want extra toppings\n1.yes\n2.No"))
+                if (p == 1) {
+                    // alert("Extra Toppings added")
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: t,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    alert(`The item details\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                    S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (S == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else if (S == 2) {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum + 5}\nExtra Toppings  :  added\n--------------\nTotal  :  ${sum + 5}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                    else {
+                        alert("You are entered invalid input. Please enter valid input to continue.")
+                        let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                        if (S == 1) {
+                            Pepper_Barbecue_Chicken()
+                        }
+                        else {
+                            Invalid()
+                        }
+                    }
+                }
+                else if (p == 2) {
+                    const value = {
+                        ItemName: Item,
+                        Quantity: A1,
+                        Extra_Toppings: 0,
+                        Price: sum + t
+                    }
+                    arr.push(value)
+                    console.log(arr)
+                    let p2 = Number(prompt("Do you want another items\n1.yes\n2.No"))
+                    if (p2 == 1) {
+                        let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                        user_options(Number(options))
+                    }
+                    else {
+                        TotalBill(arr)
+                        // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nsize  :  Large\nQuantity  :  ${A1}\nPrice  :  ${sum}\nExtra Toppings  :  Not added\n--------------\nTotal  :  ${sum}\n--------------`)
+                        alert("Thank you for purchace. Visit again.")
+                    }
+                }
+                else {
+                    alert("You are entered invalid input. Please enter valid input to continue.")
+                    let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                    if (s === 1) {
+                        Pepper_Barbecue_Chicken()
+                    }
+                    else {
+                        Invalid()
+                    }
+                }
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (s === 1) {
+                    Pepper_Barbecue_Chicken()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Pepper_Barbecue_Chicken()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-----------------------iceCreams section----------------------
+    function iceCreams() {
+        let i = Number(prompt("Select what type of Ice Cream do you want\n1.Soft Serve\n2.Sorbet\n3.Kulfi"))
+        if (i == 1) {
+            Soft_Serve()
+        }
+        else if (i == 2) {
+            Sorbet()
+        }
+        else if (i == 3) {
+            Kulfi()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                iceCreams()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-----------------------Soft_Serve section----------------------
+    function Soft_Serve() {
+        // alert("Your selected Soft_Serve");
+        let ss = Number(prompt("Select what type of flavour do you want\n1.Black Raspberry\n2.Caramel\n3.Marshmallow\n4.Chocolate"))
+        if (ss == 1) {
+            Black_Raspberry()
+        }
+        else if (ss == 2) {
+            Caramel()
+        }
+        else if (ss == 3) {
+            Chocolate()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Soft_Serve()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //--------------Black_Raspberry-------------
+    function Black_Raspberry() {
+        // alert("You selected Black_Raspberry ice cream")
+        let P = 180
+        alert(`You are selected Black_Raspberry Ice cream.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Ice creams do you want:"))
+        if (A1 > 0) {
+            let t = 5
+            Item = `Soft_Serve Ice Cream`
+            Flavour = `Black_Raspberry`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  :  ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\n\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Black_Raspberry()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Black_Raspberry()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //--------------Caramel-------------
+    function Caramel() {
+        // alert("You selected Caramel ice cream")
+        let P = 200
+        alert(`You are selected Caramel Ice cream.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Ice creams do you want:"))
+        if (A1 > 0) {
+            Item = `Soft_Serve Ice Cream`
+            Flavour = `Caramel`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Caramel()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Caramel()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //--------------Chocolate-------------
+    function Chocolate() {
+        // alert("You selected Chocolate ice cream")
+        let P = 300
+        alert(`You are selected Chocolate Ice cream.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Ice creams do you want:"))
+        if (A1 > 0) {
+            Item = `Soft_Serve Ice Cream`
+            Flavour = `Chocolate`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Chocolate()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Chocolate()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-----------------------Sorbet----------------------
+    function Sorbet() {
+        // alert("Your selected Sorbet");
+        let S = Number(prompt("Select what type of flavour do you want\n1.Apple_Sorbet\n2. Black_Current_Sorbet\n3.Grape_sorbet\n4.pomegranate_sorbet"))
+        if (S == 1) {
+            Apple_Sorbet()
+        }
+        else if (S == 2) {
+            Black_Current_Sorbet()
+        }
+        else if (S == 3) {
+            Grape_sorbet()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Sorbet()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+
+    //--------------Apple_Sorbet-------------
+    function Apple_Sorbet() {
+        // alert("You selected Apple_Sorbet ice cream")
+        let P = 200
+        alert(`You are selected Apple_Sorbet Ice cream.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Ice creams do you want:"))
+        if (A1 > 0) {
+            Item = `Sorbet Ice Cream`
+            Flavour = `Apple_Sorbet`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Apple_Sorbet()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Apple_Sorbet()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //------------- Black_Current_Sorbet--------------
+    function Black_Current_Sorbet() {
+        // alert("You selected Black_Current_Sorbet ice cream")
+        let P = 250
+        alert(`You are selected Black_Current_Sorbet Ice cream.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Ice creams do you want:"))
+        if (A1 > 0) {
+            Item = `Sorbet Ice Cream`
+            Flavour = `Black_Current_Sorbet`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Black_Current_Sorbet()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Black_Current_Sorbet()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //------------- Grape_sorbet--------------
+    function Grape_sorbet() {
+        //alert("You selected Grape_sorbet ice cream")
+        let P = 220
+        alert(`You are selected Grape_sorbet Ice cream.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Ice creams do you want:"))
+        if (A1 > 0) {
+            Item = `Sorbet Ice Cream`
+            Flavour = `Grape_sorbet`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Grape_sorbet()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Grape_sorbet()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-----------------------Kulfi----------------------
+    function Kulfi() {
+        // alert("Your selected Kulfi");
+        let S = Number(prompt("Select what type of flavour do you want\n1.Mango\n2.saffron\n3.cardamom_elaichi\n4.cream_malai"))
+        if (S == 1) {
+            Mango()
+        }
+        else if (S == 2) {
+            saffron()
+        }
+        else if (S == 3) {
+            cream_malai()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Kulfi()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //--------------Mango-------------
+    function Mango() {
+        // alert("You selected Mango ice cream")
+        let P = 280
+        alert(`You are selected Kulfi Ice cream.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Ice creams do you want:"))
+        if (A1 > 0) {
+            Item = `Kulfi Ice Cream`
+            Flavour = `Mango`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Mango()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Mango()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------saffron-------------
+    function saffron() {
+        // alert("You selected saffron ice cream")
+        let P = 230
+        alert(`You are selected saffron Ice cream.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Ice creams do you want:"))
+        if (A1 > 0) {
+            Item = `Kulfi Ice Cream`
+            Flavour = `saffron`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    saffron()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                saffron()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------  cream_malai--------------
+    function cream_malai() {
+        // alert("You selected cream_malai cream")
+        let P = 220
+        alert(`You are selected cream_malai Ice cream.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Ice creams do you want:"))
+        if (A1 > 0) {
+            Item = `Kulfi Ice Cream`
+            Flavour = `cream_malai`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    cream_malai()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                cream_malai()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-----------------------SoftDrinks section----------------------
+    function SoftDrinks() {
+        let i = Number(prompt("Select what type of SoftDrinks do you want\n1.Cool Drinks\n2.Milk Shakes"))
+        if (i == 1) {
+            Cool_Drinks()
+        }
+        else if (i == 2) {
+            Milk_Shakes()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                SoftDrinks()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //----------------------- Cool_Drinks section----------------------
+    function Cool_Drinks() {
+        // alert("Your selected Cool_Drinks");
+        let ss = Number(prompt("Select what type of drink do you want\n1.Coca-Cola\n2.sprite\n3.Pepsi\n4.Limca"))
+        if (ss == 1) {
+            Coca_Cola()
+        }
+        else if (ss == 2) {
+            sprite()
+        }
+        else if (ss == 3) {
+            Pepsi()
+        }
+        else if (ss == 4) {
+            Limca()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Cool_Drinks()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //--------------Coca_Cola-------------
+    function Coca_Cola() {
+        // alert("You selected Coca_Cola")
+        let P = 200
+        alert(`You are selected Coca_Cola\nThe price is:${P}`)
+        let A1 = Number(prompt("How many cool Drinks do you want:"))
+        if (A1 > 0) {
+            Item = `Coca_Cola`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : Coca_Cola\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Coca_Cola()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Coca_Cola()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //--------------  sprite-------------
+    function sprite() {
+        // alert("You selected  sprite")
+        let P = 250
+        alert(`You are selected sprite\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Cool Drinks do you want:"))
+        if (A1 > 0) {
+            Item = `Sprite`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : sprite\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    sprite()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                sprite()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //--------------Pepsi-------------
+    function Pepsi() {
+        // alert("You selected Pepsi")
+        let P = 220
+        alert(`You are selected Pepsi\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Cool Drinks do you want:"))
+        if (A1 > 0) {
+            Item = `Pepsi`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : Pepsi\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Pepsi()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Pepsi()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //--------------Limca-------------
+    function Limca() {
+        // alert("You selected Limca")
+        let P = 200
+        alert(`You are selected Limca\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Cool Drinks do you want:"))
+        if (A1 > 0) {
+            Item = `Limca`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : Limca\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Limca()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Limca()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-----------------------Milk Shakes section----------------------
+    function Milk_Shakes() {
+        // alert("Your selected Milk_Shakes");
+        let ss = Number(prompt("Select what type of drink do you want\n1.Strawberry Milkshake\n2.Lemon Pie Milkshake\n3.Peanut Butter Milkshake\n4.Oreo Cheesecake Milkshake"))
+        if (ss == 1) {
+            Strawberry()
+        }
+        else if (ss == 2) {
+            Lemon_Pie()
+        }
+        else if (ss == 3) {
+            Peanut_Butter()
+        }
+        else if (ss == 4) {
+            Oreo_Cheesecake()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Milk_Shakes()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------- Strawberry-------------
+    function Strawberry() {
+        // alert("You selected  Strawberry")
+        let P = 330
+        alert(`You are selected Strawberry Milk Shake\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Milk Shakes do you want:"))
+        if (A1 > 0) {
+            Item = `Strawberry`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item} Milk Shake\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  Strawberry Milk Shake\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Strawberry()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Strawberry()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------- Lemon_Pie-------------
+    function Lemon_Pie() {
+        // alert("You selected Lemon_Pie")
+        let P = 300
+        alert(`You are selected Lemon_Pie Milk Shake\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Milk Shakes do you want:"))
+        if (A1 > 0) {
+            Item = `Lemon_Pie`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :   ${Item} Milk Shake\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  Lemon_Pie Milk Shake\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Lemon_Pie()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Lemon_Pie()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------- Peanut_Butter-------------
+    function Peanut_Butter() {
+        // alert("You selected  Peanut_Butter")
+        let P = 450
+        alert(`You are selected Peanut_Butter Milk Shake\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Milk Shakes do you want:"))
+        if (A1 > 0) {
+            Item = `Peanut_Butter`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item} Milk Shake\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  Peanut_Butter Milk Shake\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Peanut_Butter()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Peanut_Butter()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------Oreo_Cheesecake-------------
+    function Oreo_Cheesecake() {
+        // alert("You selected Oreo_Cheesecake")
+        let P = 350
+        alert(`You are selected Oreo_Cheesecake Milk Shake\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Milk Shakes do you want:"))
+        if (A1 > 0) {
+            Item = `Oreo_Cheesecake`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item} Milk Shake\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  :  Oreo_Cheesecake Milk Shake\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Oreo_Cheesecake()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Oreo_Cheesecake()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-----------------------desserts section----------------------
+    function Desserts() {
+        let i = Number(prompt("Select what type of Desserts do you want\n1.Doughnuts\n2.Frozen_Yogurt\n3.Cupcakes"))
+        if (i == 1) {
+            Doughnuts()
+        }
+        else if (i == 2) {
+            Frozen_Yogurt()
+        }
+        else if (i == 3) {
+            Cupcakes()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Desserts()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-----------------------Doughnuts section----------------------
+    function Doughnuts() {
+        // alert("Your selected Doughnuts");
+        let ss = Number(prompt("Select what type of doughnuts do you want\n1.Coconut\n2.Chocolate_Frosted\n3.Strawberry_Frosted"))
+        if (ss == 1) {
+            Coconut()
+        }
+        else if (ss == 2) {
+            Chocolate_Frosted()
+        }
+        else if (ss == 3) {
+            Strawberry_Frosted()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Doughnuts()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------Coconut-------------
+    function Coconut() {
+        // alert("You selected Coconut")
+        let P = 220
+        alert(`You are selected Coconut Doughnut.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Doughnuts do you want:"))
+        if (A1 > 0) {
+            Item = `Doughnuts`
+            Flavour = `Coconut`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : Doughnuts\nFlavour  : Coconut\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Coconut()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Coconut()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------Chocolate_Frosted-------------
+    function Chocolate_Frosted() {
+        // alert("You selected Chocolate_Frosted")
+        let P = 320
+        alert(`You are selected Chocolate_Frosted Doughnut.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Doughnuts do you want:"))
+        if (A1 > 0) {
+            Item = `Doughnuts`
+            Flavour = `Chocolate_Frosted`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : Doughnuts\nFlavour  : Chocolate_Frosted\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Chocolate_Frosted()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Chocolate_Frosted()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------Strawberry_Frosted-------------
+    function Strawberry_Frosted() {
+        // alert("You selected Strawberry_Frosted")
+        let P = 350
+        alert(`You are selected Strawberry_Frosted Doughnut.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Doughnuts do you want:"))
+        if (A1 > 0) {
+            Item = `Doughnuts`
+            Flavour = `Strawberry_Frosted`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : Doughnuts\nFlavour  : Strawberry_Frosted\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Strawberry_Frosted()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Strawberry_Frosted()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //----------------------- Frozen_Yogurt section----------------------
+    function Frozen_Yogurt() {
+        // alert("Your selected Frozen_Yogurt");
+        let ss = Number(prompt("Select what type of  Frozen_Yogurt do you want\n1.Blueberry\n2.White_Chocolate\n3.Venilla"))
+        if (ss == 1) {
+            Blueberry()
+        }
+        else if (ss == 2) {
+            White_Chocolate()
+        }
+        else if (ss == 3) {
+            Venilla()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Frozen_Yogurt()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------Blueberry-------------
+    function Blueberry() {
+        // alert("You selected Blueberry")
+        let P = 350
+        alert(`You are selected Blueberry Frozen_Yogurt.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Blueberry Frozen_Yogurts do you want:"))
+        if (A1 > 0) {
+            Item = `Frozen_Yogurt`
+            Flavour = `Blueberry`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : Frozen_Yogurt\nFlavour  : Blueberry \nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Blueberry()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Blueberry()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------White_Chocolate-------------
+    function White_Chocolate() {
+        // alert("You selected White_Chocolate")
+        let P = 300
+        alert(`You are selected White_Chocolate Frozen_Yogurt.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many White_Chocolate Frozen_Yogurts do you want:"))
+        if (A1 > 0) {
+            Item = `Frozen_Yogurt`
+            Flavour = `White_Chocolate`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : Frozen_Yogurt\nFlavour  : White_Chocolate \nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    White_Chocolate()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                White_Chocolate()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------Venilla-------------
+    function Venilla() {
+        // alert("You selected Venilla")
+        let P = 350
+        alert(`You are selected Venilla Frozen_Yogurt.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Venilla Frozen_Yogurts do you want:"))
+        if (A1 > 0) {
+            Item = `Frozen_Yogurt`
+            Flavour = `Venilla`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : Frozen_Yogurt\nFlavour  : Venilla \nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Venilla()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Venilla()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-----------------------Cupcakes section----------------------
+    function Cupcakes() {
+        // alert("Your selected Cupcakes");
+        let ss = Number(prompt("Select what type of Cupcakes do you want\n1.Red Valvet\n2.Lemon_Drop\n3.Peanut_Butter"))
+        if (ss == 1) {
+            Red_Valvet()
+        }
+        else if (ss == 2) {
+            Lemon_Drop()
+        }
+        else if (ss == 3) {
+            Peanut_Butter()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Cupcakes()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------Red Valvet-------------
+    function Red_Valvet() {
+        // alert("You selected Red Valvet")
+        let P = 350
+        alert(`You are selected CupCakes.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Red_Valvet cupcakes do you want:"))
+        if (A1 > 0) {
+            Item = `Cupcakes`
+            Flavour = `Red_Valvet`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : CupCakes\nFlavour  : Red_Valvet\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Red_Valvet()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Red_Valvet()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------Lemon_Drop-------------
+    function Lemon_Drop() {
+        // alert("You selected Lemon_Drop")
+        let P = 390
+        alert(`You are selected CupCakes.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Lemon_Drop cupcakes do you want:"))
+        if (A1 > 0) {
+            Item = `Cupcakes`
+            Flavour = `Lemon_Drop`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : CupCakes\nFlavour  : Lemon_Drop\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Lemon_Drop()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Lemon_Drop()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //-------------Peanut_Butter-------------
+    function Peanut_Butter() {
+        // alert("You selected Peanut_Butter")
+        let P = 390
+        alert(`You are selected CupCakes.\nThe price is:${P}`)
+        let A1 = Number(prompt("How many Peanut_Butter cupcakes do you want:"))
+        if (A1 > 0) {
+            Item = `Cupcakes`
+            Flavour = `Peanut_Butter`
+            let sum = A1 * P
+            alert(`The Total price is:${A1}*${P}=${sum}`)
+            alert(`The item details\n--------------\nItem Name  :  ${Item}\nFlavour  : ${Flavour}\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+            const value = {
+                ItemName: Item,
+                Item_Flavour: Flavour,
+                Quantity: A1,
+                Price: sum
+            }
+            arr.push(value)
+            console.log(arr)
+            S = Number(prompt("Do you want another items\n1.yes\n2.No"))
+            if (S == 1) {
+                let options = prompt("************************Wellcome to Pizza Hut******************** \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else if (S == 2) {
+                TotalBill(arr)
+                // alert(`Bill Amount\n--------------\nItem Name  : CupCakes\nFlavour  : Peanut_Butter\nQuantity  :  ${A1}\nPrice  :  ${sum}\n--------------\nTotal  :  ${sum}\n--------------`)
+                alert("Thank you for purchace. Visit again.")
+            }
+            else {
+                alert("You are entered invalid input. Please enter valid input to continue.")
+                let S = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+                if (S == 1) {
+                    Peanut_Butter()
+                }
+                else {
+                    Invalid()
+                }
+            }
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s === 1) {
+                Peanut_Butter()
+            }
+            else {
+                Invalid()
+            }
+        }
+    }
+    //---------user_options---------------------
+    function user_options(num1) {
+        if (num1 === 1) {
+            pizza()
+        }
+        else if (num1 === 2) {
+            iceCreams()
+        }
+        else if (num1 === 3) {
+            SoftDrinks()
+        }
+        else if (num1 === 4) {
+            Desserts()
+        }
+        else {
+            alert("You are entered invalid input. Please enter valid input to continue.")
+            let s1 = Number(prompt("Do you want to Continue.\n1.For yes press 1\n2.For No press 2"))
+            if (s1 == 1) {
+                let options = prompt("******** Wellcome to Pizza Hut ********* \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                user_options(Number(options))
+            }
+            else {
+                opt = prompt("Do you want to exit.\nFor yes press 1\nFor No press 2")
+                if (opt == 1) {
+                    alert("Thank you for Visiting.")
+                }
+                else {
+                    let options = prompt("******** Wellcome to Pizza Hut ********* \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+                    user_options(Number(options))
+                }
+            }
+        }
+    }
+    let options = prompt("******** Wellcome to Pizza Hut ********* \nSelect What do you want \n1.Pizza .\n2.Ice Creams\n3.SoftDrinks\n4.Desserts")
+    user_options(Number(options))
+</script>
+
+</html>
